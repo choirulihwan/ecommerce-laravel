@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
 use Session;
 
 class ProductsController extends Controller
@@ -16,7 +17,10 @@ class ProductsController extends Controller
     public function index()
     {
         //
-        return view('products.index')->with('products', Product::all());
+        return view('products.index', [
+                'products' => Product::all(),                
+            ]
+        );
     }
 
     /**
@@ -27,7 +31,11 @@ class ProductsController extends Controller
     public function create()
     {
         //
-        return view('products.create');
+        return view('products.form', [
+            'is_edit'   => false,
+            'title'     => 'Create',
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -53,7 +61,7 @@ class ProductsController extends Controller
 
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->price = $request->price;
+        $product->price = str_replace('.', '', $request->price);
         $product->image = 'uploads/products/'.$image_new_name;
 
         $product->save();
@@ -82,7 +90,13 @@ class ProductsController extends Controller
     public function edit($id)
     {
         //
-        return view('products.edit', ['product' => Product::find($id)]);
+        return view('products.form', [
+            'is_edit'   => true,
+            'title'     => 'Update',
+            'product' => Product::find($id),
+            'categories' => Category::all()       
+            ]
+        );
     }
 
     /**
@@ -94,7 +108,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
         $this->validate($request, [
             'name' => 'required', 
             'price' => 'required', 
@@ -113,7 +127,8 @@ class ProductsController extends Controller
 
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->price = $request->price;
+        $product->price = str_replace('.', '', $request->price);
+        $product->category_id = $request->category;
         
 
         $product->save();

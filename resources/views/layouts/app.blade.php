@@ -12,6 +12,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    
+    {{-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> --}}
+    <script src="{{ asset('app/js/jquery-2.1.4.min.js') }}"></script>
+    
+    {{-- my script --}}
+    <script src="{{ asset('js/script.js') }}"></script>
+
+    {{-- summernote --}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -39,6 +50,8 @@
                         &nbsp;
                         <li><a href="{{ route('products.index') }}">Products</a></li>
                         <li><a href="{{ route('products.create') }}">New Product</a></li>
+                        <li><a href="{{ route('categories.index') }}">Categories</a></li>
+                        <li><a href="{{ route('categories.create') }}">New Category</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -93,6 +106,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+    
 </body>
 </html>

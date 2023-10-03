@@ -50,7 +50,7 @@
 
                     <div class="cart-popup-wrap">
                         <div class="popup-cart">
-                            <h4 class="title-cart text-center">Rp. {{ Cart::total() }}</h4>
+                            <h4 class="title-cart text-center">Rp. {{ number_format(Cart::total(), 0, ',', '.') }}</h4>
                             <p class="subtitle">Please make your choice.</p>
                             <a href="/cart">
                                 <div class="btn btn-small btn--dark">
@@ -75,8 +75,8 @@
         <div class="row pt120">
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="heading align-center mb60">
-                    <h4 class="h1 heading-title">E-commerce online florist</h4>
-                    <p class="heading-text">Buy Artificial flowers, and we ship to you.
+                    <h4 class="h1 heading-title">E-commerce Bunga Diva</h4>
+                    <p class="heading-text">Buy Anything You Want For Pleasure
                     </p>
                 </div>
             </div>

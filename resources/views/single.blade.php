@@ -22,9 +22,9 @@
 
             <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12 col-xs-offset-0">
                 <div class="product-details-info">
-                    <div class="product-details-info-price">Rp. {{ $product->price }}</div>
+                    <div class="product-details-info-price">Rp. {{ number_format($product->price, 0, ',','.') }}</div>
                     <h3 class="product-details-info-title">{{ $product->name }}</h3>
-                    <p class="product-details-info-text">{{ $product->description }}</p>
+                    <p class="product-details-info-text">{!! $product->description !!}</p>
 
                     <!---->
 

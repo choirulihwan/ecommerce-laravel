@@ -23,7 +23,7 @@
                                 <h5 class="books-title">{{ $product->name }}</h5>
                             </a>
 
-                            <div class="books-price">{{ $product->price }}</div>
+                            <div class="books-price">{{ number_format($product->price, 0, ',','.') }}</div>
                         </div>
 
                         <a href="{{ route('cart.rapid.add', ['id' => $product->id]) }}" class="btn btn-small btn--dark add">
