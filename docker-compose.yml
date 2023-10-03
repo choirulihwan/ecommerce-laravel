@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+  app:
+    build:      
+      context: ./
+      dockerfile: Dockerfile
+    image: ecommerce
+    container_name: ecommerce-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - ecommerce
+  
+  db:
+    image: mariadb:10.4
+    container_name: ecommerce-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel_ecommerce
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"     
+    volumes:
+      - ./docker-compose/mysql:/var/lib/mysql
+      # - ./docker-compose/mysql/laravel_ecommerce.sql:/docker-entrypoint-initdb.d/1.sql
+    networks:
+      - ecommerce
+  
+  nginx:
+    image: nginx:alpine
+    container_name: ecommerce-nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - ecommerce
+
+networks:
+  ecommerce:
+    name: ecommerce
+    
